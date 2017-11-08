@@ -9,6 +9,7 @@
     "precommit": "lint-staged",
     "dev": "babel-node example/server.js"
   },
+
   "devDependencies": {
     "apollo-link": "^1.0.0",
     "apollo-link-http": "^1.1.0",
@@ -51,6 +52,10 @@
   },
   "resolutions": {
     "graphql": "^0.11.7"
+  },
+  "lint-staged": {
+    "*.js": ["eslint --fix", "git add"],
+    "*.json": ["prettier --write", "git add"]
   },
   "config": {
     "commitizen": {
