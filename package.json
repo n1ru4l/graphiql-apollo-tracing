@@ -1,0 +1,60 @@
+{
+  "name": "graphiql-apollo-tracing",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Laurin Quast <laurinquast@googlemail.com>",
+  "license": "MIT",
+  "scripts": {
+    "cm": "git-cz",
+    "precommit": "lint-staged",
+    "dev": "babel-node example/server.js"
+  },
+  "devDependencies": {
+    "apollo-link": "^1.0.0",
+    "apollo-link-http": "^1.1.0",
+    "apollo-server-express": "^1.2.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.2",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "body-parser": "^1.18.2",
+    "eslint": "^4.10.0",
+    "eslint-plugin-jest": "^21.2.0",
+    "eslint-plugin-prettier": "^2.3.1",
+    "eslint-plugin-react": "^7.4.0",
+    "faker": "^4.1.0",
+    "graphiql": "^0.11.10",
+    "graphql": "^0.11.7",
+    "graphql-tag": "^2.5.0",
+    "graphql-tools": "^2.7.2",
+    "husky": "^0.14.3",
+    "jest": "^21.2.1",
+    "lint-staged": "^4.3.0",
+    "lodash.times": "^4.3.2",
+    "morgan": "^1.9.0",
+    "prettier": "^1.8.1",
+    "prop-types": "^15.6.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "webpack": "^3.8.1",
+    "webpack-dev-middleware": "^1.12.0",
+    "webpack-dev-server": "^2.9.4"
+  },
+  "dependencies": {
+    "cz-conventional-changelog": "^2.1.0",
+    "lodash.difference": "^4.5.0",
+    "lodash.memoize": "^4.1.2",
+    "styled-components": "^2.2.3"
+  },
+  "resolutions": {
+    "graphql": "^0.11.7"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

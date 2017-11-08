@@ -1,0 +1,19 @@
+# OSX
+#
+.DS_Store
+
+# Build
+dist
+lib
+
+# node.js
+#
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# npm/yarn
+#
+package-lock.json
+yarn.lock
+
