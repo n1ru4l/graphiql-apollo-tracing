@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { DurationIndicator } from './duration-indicator'
-import { ApolloTraceRow } from './apollo-trace-row'
+import { ApolloTraceView } from './apollo-trace-view'
 
 const Title = styled.div`
   background: #eeeeee;
@@ -49,10 +49,7 @@ export class GraphiQLApolloTrace extends React.Component {
 
     if (!tracing) return null
     const { resolvers } = tracing.execution
-    const rootResolvers = resolvers.filter(
-      resolver =>
-        resolver.parentType === `Query` || resolver.parentType === `Mutation`,
-    )
+
     return (
       <div>
         <Title
@@ -74,15 +71,11 @@ export class GraphiQLApolloTrace extends React.Component {
         </Title>
         {isExpanded ? (
           <ApolloTraceContainer isExpanded={isExpanded}>
-            {rootResolvers.map(resolver => (
-              <ApolloTraceRow
-                {...resolver}
-                resolvers={resolvers}
-                isArrayItem={false}
-                onClickType={this.props.onClickType}
-                key={resolver.path.join(`_`)}
-              />
-            ))}
+            <ApolloTraceView
+              resolvers={resolvers}
+              duration={tracing.duration}
+              width={document.body.clientWidth / 3}
+            />
           </ApolloTraceContainer>
         ) : null}
       </div>

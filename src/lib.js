@@ -13,17 +13,6 @@ export const getChildResolvers = (resolvers, path, isList) =>
     return slicedPath.length === path.length && isEqual(path, slicedPath)
   })
 
-export const groupChildren = children =>
-  children.reduce((groupedChilds, children) => {
-    const index = children.path[children.path.length - 2]
-
-    if (!Array.isArray(groupedChilds[index])) {
-      groupedChilds[index] = []
-    }
-    groupedChilds[index].push(children)
-    return groupedChilds
-  }, [])
-
 export const parseType = memoize(typeName => {
   let pre = ``
   let after = ``
@@ -45,3 +34,13 @@ export const parseType = memoize(typeName => {
 
   return { pre, type, after }
 })
+
+export const formatNano = nano => {
+  const micro = nano / 1000
+  if (micro < 1) return nano.toFixed(2) + ` ns`
+  const milli = micro / 1000
+  if (milli < 1) return micro.toFixed(2) + ` µs`
+  const second = milli / 1000
+  if (second < 1) return milli.toFixed(2) + ` ms`
+  return second.toFixed(2) + ` s`
+}

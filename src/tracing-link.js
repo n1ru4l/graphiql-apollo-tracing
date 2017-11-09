@@ -14,7 +14,6 @@ class TracingLink extends ApolloLink {
           const extensions = { ...res.extension, tracing: undefined }
           const availableExtensions = Object.keys(extensions)
           this.subscribers.forEach(handler => handler(res.extensions.tracing))
-
           observer.next({
             ...res,
             extensions: availableExtensions.length ? undefined : extensions,

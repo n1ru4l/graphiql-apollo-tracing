@@ -45,7 +45,9 @@
   },
   "dependencies": {
     "cz-conventional-changelog": "^2.1.0",
+    "d3-scale": "^1.0.6",
     "lodash.difference": "^4.5.0",
+    "lodash.flattendeep": "^4.4.0",
     "lodash.isequal": "^4.5.0",
     "lodash.memoize": "^4.1.2",
     "styled-components": "^2.2.3"
