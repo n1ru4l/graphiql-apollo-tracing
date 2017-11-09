@@ -2,14 +2,16 @@ import React from 'react'
 import styled from 'styled-components'
 
 import { ApolloTraceTypeLink } from './apollo-trace-type-link'
+import { ApolloTraceListItemGroup } from './apollo-trace-list-item-group'
 import { DurationIndicator } from './duration-indicator'
 import { getChildResolvers, groupChildren } from '../lib'
+import { ExpandButton } from './expand-button'
 
-const ExpandButton = styled.button`
-  border: 0;
-  height: 20px;
-  width: 20px;
-  background-color: transparent;
+const Row = styled.div`
+  position: relative;
+  padding-left: 10px;
+  font-family: 'Consolas', 'Inconsolata', 'Droid Sans Mono', 'Monaco', monospace;
+  font-size: 12px;
 `
 
 export class ApolloTraceRow extends React.Component {
@@ -34,24 +36,16 @@ export class ApolloTraceRow extends React.Component {
     const childResolvers = getChildResolvers(resolvers, path)
 
     return (
-      <div
-        style={{
-          paddingLeft: 10,
-          fontFamily: `'Consolas', 'Inconsolata', 'Droid Sans Mono', 'Monaco', monospace`,
-          fontSize: 12,
-        }}
-      >
+      <Row>
         {childResolvers.length ? (
           <ExpandButton
+            isExpanded={isExpanded}
             onClick={() =>
               this.setState(state => ({
-                ...state,
                 isExpanded: !state.isExpanded,
               }))
             }
-          >
-            {isExpanded ? `▾` : `▸`}
-          </ExpandButton>
+          />
         ) : null}
         {fieldName} :{' '}
         <ApolloTraceTypeLink onClick={onClickType} typeName={returnType} />
@@ -62,33 +56,24 @@ export class ApolloTraceRow extends React.Component {
           <div>
             {isArray
               ? groupChildren(childResolvers).map((childResolvers, i) => (
-                  <div
+                  <ApolloTraceListItemGroup
                     key={childResolvers[0].path
                       .slice(0, childResolvers[0].path.length - 1)
                       .join(`_`)}
-                    style={{
-                      paddingLeft: 10,
-                      display: `flex`,
-                      marginBottom: 5,
-                    }}
+                    resolvers={resolvers}
+                    childResolvers={childResolvers}
+                    index={i}
+                    onClickType={onClickType}
                   >
-                    <div style={{ width: 10, color: `#2882F9` }}>{i}</div>
-                    <div
-                      style={{
-                        display: `inline-block`,
-                        width: `calc(100% - 10px)`,
-                      }}
-                    >
-                      {childResolvers.map(resolver => (
-                        <ApolloTraceRow
-                          {...resolver}
-                          resolvers={resolvers}
-                          key={resolver.path.join(`_`)}
-                          onClickType={onClickType}
-                        />
-                      ))}
-                    </div>
-                  </div>
+                    {childResolvers.map(resolver => (
+                      <ApolloTraceRow
+                        {...resolver}
+                        resolvers={resolvers}
+                        key={resolver.path.join(`_`)}
+                        onClickType={onClickType}
+                      />
+                    ))}
+                  </ApolloTraceListItemGroup>
                 ))
               : childResolvers.map(resolver => (
                   <ApolloTraceRow
@@ -100,7 +85,7 @@ export class ApolloTraceRow extends React.Component {
                 ))}
           </div>
         )}
-      </div>
+      </Row>
     )
   }
 }
