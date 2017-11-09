@@ -1,5 +1,15 @@
 import React from 'react'
+import styled from 'styled-components'
+
 import { parseType } from '../lib'
+
+const TypeName = styled.a`
+  color: #ca9800;
+  &:hover {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+`
 
 export class ApolloTraceTypeLink extends React.Component {
   render() {
@@ -9,9 +19,7 @@ export class ApolloTraceTypeLink extends React.Component {
     return (
       <span>
         {pre}
-        <a className="type-name" onClick={() => onClick(type)}>
-          {type}
-        </a>
+        <TypeName onClick={() => onClick(type)}>{type}</TypeName>
         {after}
       </span>
     )

@@ -1,8 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
+import { ExpandButton } from './expand-button'
 
 const ListItemGroupView = styled.div`
-  padding-left: 10px;
+  position: relative;
   display: flex;
   margin-bottom: 5px;
 `
@@ -10,6 +11,7 @@ const ListItemGroupView = styled.div`
 const IndexIndicator = styled.div`
   width: 10px;
   color: #2882f9;
+  padding-left: 5px;
 `
 
 const FieldWrapper = styled.div`
@@ -29,8 +31,14 @@ export class ApolloTraceListItemGroup extends React.Component {
 
     return (
       <ListItemGroupView>
+        <ExpandButton
+          isExpanded={isExpanded}
+          onClick={() =>
+            this.setState(state => ({ isExpanded: !state.isExpanded }))
+          }
+        />
         <IndexIndicator>{index}</IndexIndicator>
-        <FieldWrapper>{children}</FieldWrapper>
+        {isExpanded && <FieldWrapper>{children}</FieldWrapper>}
       </ListItemGroupView>
     )
   }

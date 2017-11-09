@@ -9,7 +9,7 @@ import { ExpandButton } from './expand-button'
 
 const Row = styled.div`
   position: relative;
-  padding-left: 10px;
+  padding-left: 5px;
   font-family: 'Consolas', 'Inconsolata', 'Droid Sans Mono', 'Monaco', monospace;
   font-size: 12px;
 `
@@ -47,7 +47,7 @@ export class ApolloTraceRow extends React.Component {
             }
           />
         ) : null}
-        {fieldName} :{' '}
+        {fieldName}:{' '}
         <ApolloTraceTypeLink onClick={onClickType} typeName={returnType} />
         <span style={{ float: `right`, paddingRight: 20 }}>
           <DurationIndicator duration={duration} />

@@ -29,6 +29,7 @@ const ApolloTraceContainer = styled.div`
   overflow: scroll;
   padding-top: 10px;
   padding-bottom: 10px;
+  padding-left: 10px;
 `
 
 export class GraphiQLApolloTrace extends React.Component {
