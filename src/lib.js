@@ -1,14 +1,16 @@
-import difference from 'lodash.difference'
+import isEqual from 'lodash.isequal'
 import memoize from 'lodash.memoize'
 
-export const getChildResolvers = (resolvers, path) =>
+export const getChildResolvers = (resolvers, path, isList) =>
   resolvers.filter(resolver => {
     if (path.length === resolver.path.length) return false
 
-    return (
-      difference(path, resolver.path.slice(0, resolver.path.length - 1))
-        .length === 0
+    const slicedPath = resolver.path.slice(
+      0,
+      resolver.path.length - 1 - (isList ? 1 : 0),
     )
+
+    return slicedPath.length === path.length && isEqual(path, slicedPath)
   })
 
 export const groupChildren = children =>

@@ -32,8 +32,8 @@ export class ApolloTraceRow extends React.Component {
     } = this.props
 
     const { isExpanded } = this.state
-    const isArray = returnType.charAt(0) === `[`
-    const childResolvers = getChildResolvers(resolvers, path)
+    const isList = returnType.charAt(0) === `[`
+    const childResolvers = getChildResolvers(resolvers, path, isList)
 
     return (
       <Row>
@@ -54,7 +54,7 @@ export class ApolloTraceRow extends React.Component {
         </span>
         {isExpanded && (
           <div>
-            {isArray
+            {isList
               ? groupChildren(childResolvers).map((childResolvers, i) => (
                   <ApolloTraceListItemGroup
                     key={childResolvers[0].path

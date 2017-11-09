@@ -9,7 +9,6 @@
     "precommit": "lint-staged",
     "dev": "babel-node example/server.js"
   },
-
   "devDependencies": {
     "apollo-link": "^1.0.0",
     "apollo-link-http": "^1.1.0",
@@ -47,6 +46,7 @@
   "dependencies": {
     "cz-conventional-changelog": "^2.1.0",
     "lodash.difference": "^4.5.0",
+    "lodash.isequal": "^4.5.0",
     "lodash.memoize": "^4.1.2",
     "styled-components": "^2.2.3"
   },
@@ -54,8 +54,14 @@
     "graphql": "^0.11.7"
   },
   "lint-staged": {
-    "*.js": ["eslint --fix", "git add"],
-    "*.json": ["prettier --write", "git add"]
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.json": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "config": {
     "commitizen": {
